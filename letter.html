@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Love Letter 💌</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(to bottom right, #ffd6e8, #fff0f5);
+      font-family: 'Comic Sans MS', cursive;
+      overflow-y: auto;      /* ✅ enable scrolling */
+      padding: 40px 0;
+    }
+
+    /* Center container (scroll-safe) */
+    .container {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -40px;
+      font-size: 18px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.6;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 0.8;
+      }
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
+    .letter {
+      background: white;
+      padding: 35px;
+      border-radius: 25px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: pop 0.8s ease;
+      z-index: 1;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      text-align: center;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      min-height: 120px;
+    }
+
+    .signature {
+      text-align: right;
+      margin-top: 25px;
+      font-weight: bold;
+      color: #ff4d6d;
+      display: none;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .gallery img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="letter">
+
+      <div class="gallery">
+        <img src="photos/us.jpg" alt="Us 💕">
+        <img src="photos/cuites.jpg" alt="Cuties 🥰">
+        <img src="photos/forever_fav.jpg" alt="Forever Favorite 💖">
+      </div>
+
+      <h1>Dear Sushumna 💖</h1>
+
+      <p id="typing"></p>
+
+      <div class="signature" id="sign">
+        With all my smiles and Love,<br>
+        Sriyas 💌
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Typing Animation -->
+  <script>
+    const message = `Hi… yes YOU 🥰
+
+I just wanted you to know that you make my days brighter,
+my smiles wider, and my heart a little extra stupid 💕
+
+I like you more than cars, bikes , everything, 
+there is no limit and no measure for the love I have for you.
+
+I maybe stupid, but I’m not blind — I see how amazing you are, 
+and I feel so lucky to have you in my life.
+
+You’re cute, funny,
+and somehow make everything better just by existing.
+
+So this is me, officially asking you to be my Valentine —
+not just for one day,
+but for many laughs, memories,
+and silly moments together 💘
+
+Thank you for clicking YES
+and making my heart do happy somersaults 🥹💞`;
+
+    let i = 0;
+    const speed = 35;
+
+    function typeText() {
+      if (i < message.length) {
+        document.getElementById("typing").innerHTML +=
+          message[i] === "\n" ? "<br>" : message[i];
+        i++;
+        setTimeout(typeText, speed);
+      } else {
+        document.getElementById("sign").style.display = "block";
+      }
+    }
+
+    typeText();
+  </script>
+
+  <!-- Floating Hearts -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 15 + 15 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+
+</body>
+</html>

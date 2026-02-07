@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Sushumna 💖</title>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to right, #ffb6c1, #ffd1dc);
+      font-family: 'Comic Sans MS', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 420px;
+    }
+
+    h1, h2 {
+      color: #ff4d6d;
+    }
+
+    .bar {
+      height: 18px;
+      background: #ffd1dc;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: #ff4d6d;
+      animation: load 4s forwards;
+    }
+
+    @keyframes load {
+      to { width: 100%; }
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background: #eee;
+      position: relative;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .small {
+      font-size: 14px;
+      color: gray;
+    }
+    .heart-bg {
+  position: fixed;
+  bottom: -50px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) translateX(0);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(-110vh) translateX(50px);
+    opacity: 0;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+
+    <!-- SCAN SECTION -->
+    <div id="scan">
+      <h2>Scanning Sushumna’s Heart 💕</h2>
+      <p id="scanText">Initializing cuteness check…</p>
+      <div class="bar">
+        <div class="fill"></div>
+      </div>
+    </div>
+
+    <!-- QUESTION SECTION -->
+    <div id="question" class="hidden">
+      <h1>Hey Sushumna 💖</h1>
+      <p>You passed the heart scan with flying colors 🥰</p>
+      <h2>Will you be my Valentine? 💘</h2>
+
+      <button id="yes" onclick="yesClicked()">YES 💖</button>
+      <button id="no" onmouseover="runAway()">NO 🙄</button>
+
+      <p class="small">(NO is disabled by destiny 😌)</p>
+    </div>
+
+  </div>
+
+  <script>
+    // SCAN TEXTS
+    const texts = [
+      "Analyzing smile 😍",
+      "Checking kindness 💖",
+      "Measuring cuteness (overflow detected 😳)",
+      "Result: PERFECT MATCH 💘"
+    ];
+
+    let i = 0;
+
+    const interval = setInterval(() => {
+      if (i < texts.length) {
+        document.getElementById("scanText").innerText = texts[i++];
+      } else {
+        clearInterval(interval);
+        setTimeout(() => {
+          document.getElementById("scan").classList.add("hidden");
+          document.getElementById("question").classList.remove("hidden");
+        }, 800);
+      }
+    }, 1200);
+
+    // NO BUTTON RUNS
+    function runAway() {
+      const btn = document.getElementById("no");
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    // YES CONFETTI + REDIRECT
+    function yesClicked() {
+      confetti({
+        particleCount: 180,
+        spread: 90,
+        origin: { y: 0.6 }
+      });
+
+      setTimeout(() => {
+        window.location.href = "quiz.html";;
+      }, 1300);
+    }
+    function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart-bg";
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 15 + 15 + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 400);
+
+  </script>
+
+</body>
+</html>

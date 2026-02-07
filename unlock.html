@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unlock My Heart 🔐</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      background: #ffe6ea;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      padding-top: 80px;
+    }
+    .heart {
+      font-size: 80px;
+      cursor: pointer;
+      animation: beat 1s infinite;
+    }
+    @keyframes beat {
+      50% { transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <h2>Tap to Unlock Sriyas’s Heart 💓</h2>
+  <div class="heart" onclick="unlock()">❤️</div>
+
+  <script>
+    let clicks = 0;
+    function unlock() {
+      clicks++;
+      if (clicks >= 5) {
+        confetti({ particleCount: 200, spread: 90 });
+        setTimeout(() => {
+          window.location.href = "letter.html";
+        }, 1200);
+      }
+    }
+  </script>
+</body>
+</html>
